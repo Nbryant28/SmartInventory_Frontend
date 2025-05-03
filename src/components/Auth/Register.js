@@ -9,7 +9,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:5000/api/auth/register', { email, password });
+    await axios.post('https://smartinventory-backend.eba-xyz.us-east-1.elasticbeanstalk.com/api/auth/register', { email, password });
     navigate('/');
   };
 
