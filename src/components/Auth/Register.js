@@ -9,9 +9,17 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    await axios.post('https://smartinventory-backend.eba-xyz.us-east-1.elasticbeanstalk.com/api/auth/register', { email, password });
-    navigate('/');
+    try {
+      console.log(`${process.env.REACT_APP_API_BASE_URL}/api/auth/register`);
+
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/register`, { email, password });
+      navigate('/');
+    } catch (err) {
+      alert(err.response?.data?.message || 'Registration failed');
+      console.error(err);
+    }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
